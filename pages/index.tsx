@@ -32,6 +32,7 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>{lang.lozung}</title>
+        <meta name="viewport" content="width=500, initial-scale=0.5"></meta>
         <meta name="description" content={lang.lozung} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
