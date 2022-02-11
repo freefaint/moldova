@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>{lang.lozung}</title>
-        <meta http-equiv="refresh" content={`3;url=/${locale === "ru-RU" ? "ru-RU" : "ru-MD"}`} />
+        <meta httpEquiv="refresh" content={`3;url=/${locale === "ru-RU" ? "ru-RU" : "ru-MD"}`} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

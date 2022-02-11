@@ -25,8 +25,8 @@ const Home: NextPage = () => {
 
     fetch("/api/hello", { method: "POST", body: JSON.stringify({ name, phone, address }) }).then(() => {
       router.push('/thanks');
-    })
-  }, [ name, phone, address ]);
+    }).catch(() => null);
+  }, [ name, phone, address, router ]);
 
   return (
     <div className={styles.container}>
