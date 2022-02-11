@@ -40,7 +40,7 @@ const Home: NextPage = () => {
         <div className={styles.lang}>
           <Link href="/" locale={locale === "ru-RU" ? "ru-MD" : "ru-RU"}>
             <a>
-              {locale === "ru-RU" ? <strong>RU</strong> : "RU"}/{locale === "ru-MD" ? <strong>MD</strong> : "MD"}
+              {locale === "ru-RU" ? <strong>RU</strong> : "RU"} {locale === "ru-MD" ? <strong>MD/RO</strong> : "MD/RO"}
             </a>
           </Link>
         </div>
@@ -68,6 +68,9 @@ const Home: NextPage = () => {
         <p>{lang.text23}</p>
         <h2 className={styles.red}>{lang.subtitle22}</h2>
         <p>{lang.text24} {lang.text241}</p>
+        <p className={styles.center}>{lang.tarif1}</p>
+        <p className={styles.center}>{lang.tarif2}</p>
+        <p className={styles.center}>{lang.tarif3}</p>
         <p>{lang.text25}</p>
         <p>{lang.text26}</p>
 
