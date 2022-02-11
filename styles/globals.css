@@ -28,32 +28,37 @@ a {
 
 h1 {
   font-size: 72px;
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 h2 {
   font-size: 40px;
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 p {
   font-size: 24px;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 input {
   border-radius: 1rem;
   border-width: 0;
-  padding: 0.25rem;
+  padding: 1rem;
   background-color: #fff;
   font-family: 'Gill Sans';
   font-size: 20px;
   margin: 0.5rem;
+  width: 400px;
 }
 
 button {
   border-radius: 1rem;
   border-width: 0;
-  padding: 0.25rem;
+  padding: 1rem;
   background-color: #eee;
   font-family: 'Gill Sans';
   font-size: 20px;

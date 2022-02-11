@@ -1,121 +1,112 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 import cn from 'classnames';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+
+import ru from '../lang/ru-RU.json';
+import md from '../lang/ru-MD.json';
+
+import styles from '../styles/Home.module.css';
+import { useCallback, useState } from 'react';
 
 const Home: NextPage = () => {
+  const router = useRouter();
+  const locale = router.locale;
+
+  const lang: any = locale === "ru-RU" ? ru : md;
+
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+
+  const handleSubmit = useCallback(e => {
+    e.preventDefault();
+
+    fetch("/api/hello", { method: "POST", body: JSON.stringify({ name, phone, address }) }).then(() => {
+      router.push('/thanks');
+    })
+  }, [ name, phone, address ]);
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Народная сила - настоящая власть</title>
-        <meta name="description" content="Народная сила - настоящая власть" />
+        <title>{lang.lozung}</title>
+        <meta name="description" content={lang.lozung} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header className={styles.header}>
         <div className={styles.lang}>
-          <a href="jsvascript: void(0);">
-            RU/MD
-          </a>
+          <Link href="/" locale={locale === "ru-RU" ? "ru-MD" : "ru-RU"}>
+            <a>
+              {locale === "ru-RU" ? <strong>RU</strong> : "RU"}/{locale === "ru-MD" ? <strong>MD</strong> : "MD"}
+            </a>
+          </Link>
         </div>
 
         <div className={styles.string}>
-          <div className={cn(styles.lozung)}>Народная сила - настоящая власть</div>
-          <div className={cn(styles.lozung, styles.yellow)}>Народная сила - настоящая власть</div>
-          <div className={cn(styles.lozung)}>Народная сила - настоящая власть</div>
-          <div className={cn(styles.lozung, styles.yellow)}>Народная сила - настоящая власть</div>
-          <div className={cn(styles.lozung)}>Народная сила - настоящая власть</div>
-          <div className={cn(styles.lozung, styles.yellow)}>Народная сила - настоящая власть</div>
+          <div className={cn(styles.lozung)}>{lang.lozung}</div>
+          <div className={cn(styles.lozung, styles.yellow)}>{lang.lozung}</div>
+          <div className={cn(styles.lozung)}>{lang.lozung}</div>
+          <div className={cn(styles.lozung, styles.yellow)}>{lang.lozung}</div>
+          <div className={cn(styles.lozung)}>{lang.lozung}</div>
+          <div className={cn(styles.lozung, styles.yellow)}>{lang.lozung}</div>
         </div>
 
         <div className={styles.banner} />
       </header>
 
       <main className={styles.main}>
-        <h1>Обращение</h1>
-        
-        <p>
-          Нам говорят: «Мамалыга не взрывается». Но мы не мамалыга! Мы люди, которых уже достали. Нас часто различные лидеры собирали на протесты. Мы приходили, чтоб изменить ситуацию в стране. Но лидеры протестов оказывались трусливыми и слабыми. Они в последний момент предавали людей и трусливо сворачивали протесты. 
-        </p>
-        
-        <p>
-          Мы, группа самоорганизованных граждан, больше не хотим быть преданными и одураченными. Мы предлагаем выйти огромной силой и смести всё, что будет преграждать путь к нашим требованиям. Но  не желая провалиться и быть пустозвонами, мы разработали механизм, который должен максимально нам помочь. 
-        </p>
-
-        <h1>И вот в чём он состоит:</h1>
-
-        <p>
-          <strong>
-            Нам нужно собраться количеством не менее <span className={styles.red}>10 тыс. человек.</span> Именно это минимальное количество, которое способно заставить услышать нас. Но очень важно, чтоб на первом же митинге собралось нужное количество людей. Если соберётся меньше, то пришедшие разочаруются и в дальнейшем не придут, а непришедшие  скажут: «Хорошо, что не пошёл, всё равно было недостаточное количество людей».
-          </strong>
-        </p>
-
-        <p>
-          Поэтому мы открываем этот сайт, где регистрируем всех тех, кто обязуется прийти. Именно обязуется. Это значит, нельзя подвести, ибо тем самым подведёшь других. Если не готов твёрдо и при любых обстоятельствах выйти, то лучше не регистрируйся. Не подводи остальных. 
-        </p>
-
-        <h2>После регистрации с Вами свяжутся и объяснятся.</h2>
-
-        <p>    
-          Как только будут зарегистрированы 10.000 человек, мы сразу назначаем дату протеста. Не 9.999, а именно 10.000. Мы не хотим подводить людей. И если нас не будет 10.000 зарегистрированных, мы даже не будем начинать. Либо мы выходим и добиваемся своего, либо ждём, когда люди будут готовы. Холостого выстрела не будет!
-        </p>
-
-        <h2 className={styles.red}>После регистрации 10.000 человек мы назначаем предварительный протест. </h2>
-
-        <p>
-          На него мы выходим и смотрим друг на друга и видим все 10.000 и больше. Когда мы убеждаемся, что мы сила, и мы полны решимости, с нами надо считаться, ровно через неделю назначается Генеральный протест, который не закончится, пока мы не получим результат. А именно: вернуть тарифы по состоянию на 01.10.2021. <strong>Вернуть все деньги, которые мы переплатили с ноября 2021 года.</strong>
-        </p>
-
-        <p>
-          Кроме того, неотъемлемым требованием станет приравнивание зарегистрированных участников протестов, за заслуги перед обществом, к участникам боевых действий, с предоставлением пожизненной 50% скидки на оплату всех коммунальных платежей.
-        </p>
-
-        <p>
-          Если в течении 2 часов наши требования не будут выполнены, то мы будем блокировать госучреждения, дороги, коммуникации. А также наши требования дополнятся требованием отставки Президента и Парламента с назначением досрочных выборов.
-        </p>
+        <h1>{lang.title1}</h1>
+        <p>{lang.text11}</p>
+        <p>{lang.text12}</p>
+        <h1 className={styles.marked}>{lang.title2}</h1>
+        <p><strong>{lang.text211} <span className={styles.red}>{lang.text212}</span> {lang.text213}</strong></p>
+        <p>{lang.text22}</p>
+        <h2>{lang.subtitle21}</h2>
+        <p>{lang.text23}</p>
+        <h2 className={styles.red}>{lang.subtitle22}</h2>
+        <p>{lang.text24} {lang.text241}</p>
+        <p>{lang.text25}</p>
+        <p>{lang.text26}</p>
 
         <div className={styles.ol}>
           <div className={styles.li}>
             <div className={cn(styles.num, styles.red)}>1</div>
 
-            <div>
-              Зарегистрироваться в протестах могут только жители Кишинева и пригородов. Остальные жители страны могут зарегистрироваться только на самом протесте, если участвуют и в Подготовительном и в Основном протесте.
-            </div>
+            <div>{lang.ol1}</div>
           </div>
 
           <div className={styles.li}>
             <div className={cn(styles.num, styles.red)}>2</div>
 
-            <div>
-              Регистрация на сайте анонимная. Ваши данные тут же передаются на транзитный сервер и надежно защищены.
-            </div>
+            <div>{lang.ol2}</div>
           </div>
         </div>
 
-        <h2 style={{ textAlign: "center", margin: "4rem 2rem"}}>
-          Четкое следование изложенному плану впервые в Молдове даст народу реальную власть над собственной страной. Мы должны понять, что не мы для Санду, а Санду для нас. Если власть не может создать нам нормальные условия существования, она должна уйти. И мы выберем ту, которая сможет. И так должно быть всегда!
-        </h2>
+        <h2 className={styles.center} style={{ margin: "4rem 2rem"}}>{lang.desc}</h2>
       </main>
 
       <footer className={styles.footer}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={styles.form}>
-            <h1 className={cn(styles.white, styles.nomargin)}>Регистрация</h1>
-            <h2  className={cn(styles.white, styles.nomargin)}>Реши судьбу нашей страны</h2>
+            <h1 className={cn(styles.white, styles.nomargin)}>{lang.register}</h1>
+            <h2  className={cn(styles.white, styles.nomargin)}>{lang.help}</h2>
             <br />
             <br />
             <br />
             <br />
-            <input placeholder="ФИО" />
-            <input placeholder="Телефон" />
-            <input placeholder="Адрес" />
+            <input placeholder={lang.fio} value={name} onChange={e => setName(e.currentTarget.value)} />
+            <input placeholder={lang.phone} value={phone} onChange={e => setPhone(e.currentTarget.value)} />
+            <input placeholder={lang.address} value={address} onChange={e => setAddress(e.currentTarget.value)} />
             
-            <button type="submit">Отправить</button>
+            <button type="submit" disabled={!name || !phone}>{lang.send}</button>
           </div>
         </form>
       </footer>
     </div>
-  )
+  );
 }
 
 export default Home

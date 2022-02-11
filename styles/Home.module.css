@@ -51,8 +51,8 @@
 }
 
 .ol {
-  margin: 4rem 2rem;
-  padding: 2rem 4rem;
+  margin: 6rem 4rem;
+  padding: 4rem 6rem;
   border-top: 1px solid rgba(0,0,0,0.8);
   border-bottom: 1px solid rgba(0,0,0,0.8);
 }
@@ -69,7 +69,7 @@
 }
 
 .li:not(:last-child) {
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .footer {
@@ -93,6 +93,21 @@
   height: 68px;
   top: -34px;
   left: 26px;
+  background-color: #830000;
+}
+
+.marked {
+  position: relative;
+}
+
+.marked:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 42px;
+  height: 37px;
+  top: 24px;
+  left: -72px;
   background-color: #830000;
 }
 
