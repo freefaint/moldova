@@ -23,9 +23,11 @@ const Home: NextPage = () => {
   const handleSubmit = useCallback(e => {
     e.preventDefault();
 
-    fetch("/api/hello", { method: "POST", body: JSON.stringify({ name, phone, address }) }).then(() => {
-      router.push('/thanks');
-    }).catch(() => null);
+    fetch("/api/hello", { method: "POST", body: JSON.stringify({ name, phone, address }) }).then(resp => {
+      if (resp.status === 200) {
+        router.push('/thanks');
+      }
+    });
   }, [ name, phone, address, router ]);
 
   return (
