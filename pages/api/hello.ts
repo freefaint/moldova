@@ -12,7 +12,7 @@ async function main({ name, phone, address }: { name: string, phone: string, add
     service: "gmail",
     auth: {
       user: "pentruviata2022@gmail.com", // generated ethereal user
-      pass: "pentruviata2022", // generated ethereal password
+      pass: "6K62jogvYW", // generated ethereal password
     },
   });
 
